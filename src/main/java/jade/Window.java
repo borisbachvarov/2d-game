@@ -1,6 +1,7 @@
 package jade;
 
 import org.lwjgl.Version;
+import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
@@ -111,6 +112,16 @@ public class Window {
             if(KeyListener.isKeyPressed(GLFW_KEY_SPACE)){
                 fadeToBlack = true;
                 
+            }
+
+            if (!org.lwjgl.glfw.GLFW.glfwInit()) {
+                throw new IllegalStateException("Unable to initialize GLFW");
+            }
+
+            if (GLFW.glfwJoystickPresent(GLFW.GLFW_JOYSTICK_1)) {
+                System.out.println("Joystick 1 is connected.");
+            } else {
+                System.out.println("Joystick 1 is not connected.");
             }
 
             glfwSwapBuffers(glfwWindow);
